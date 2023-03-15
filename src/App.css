@@ -36,3 +36,10 @@
   border: 1px solid black;
   height: 42px;
 }
+
+/* Sidebar */
+.sidebar{
+  width: 200px;
+  height: 600px;
+  border: 2px solid black;
+}
