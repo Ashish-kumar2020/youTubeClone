@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header{
+  width: 1440px;
+  height: 60px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.left-side{
+  width: 400px;
+  height: 60px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.center-div{
+  width: 560px;
+  height: 60px;
+}
+.right-side{
+  width: 480px;
+ 
+  height: 60px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Input box */
+.searchbox{
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 50px 0 0 50px;
+  width: 410px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btnborder{
+  border: 1px solid black;
+  height: 42px;
 }
