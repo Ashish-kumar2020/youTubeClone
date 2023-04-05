@@ -2,28 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-.header{
-  width: 1440px;
-  height: 60px;
+
+/* Header */
+
+.headerContainer{
+  width: 90rem;
+  height: 3rem;
+  justify-content: space-between;
+}
+
+.toggleImg{
+  height: 3rem;
+  padding: 6px;
+  /* margin-left: 26px; */
 }
 
 
-.left-side{
-  width: 400px;
-  height: 60px;
-}
 
-.center-div{
-  width: 560px;
-  height: 60px;
-}
-.right-side{
-  width: 480px;
- 
-  height: 60px;
-}
-
-/* Input box */
 .searchbox{
   border-top: 1px solid black;
   border-left: 1px solid black;
@@ -37,9 +32,3 @@
   height: 42px;
 }
 
-/* Sidebar */
-.sidebar{
-  width: 200px;
-  height: 600px;
-  border: 2px solid black;
-}
