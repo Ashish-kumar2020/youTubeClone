@@ -2,9 +2,32 @@ import { useDispatch } from 'react-redux';
 
 import '../App.css';
 import user from "../assets/icons/user.svg"
+import {useEffect, useState} from "react";
 import { toggleSidebar } from '../utils/toggleSlice';
+
 function Header(){
-   
+    const [searchQuery,setSearchQuery] = useState("");
+    const [suggestions,setSuggestions] = useState([]);
+
+    const [showSuggestion, setShowSuggestion] = useState(false);
+
+    console.log(searchQuery);
+
+    useEffect(()=>{
+       const timer = setTimeout(()=> getSearchSuggestions(),200);
+
+       return ()=>{
+        clearTimeout(timer);
+       }
+    },[searchQuery]);
+
+    const getSearchSuggestions = async ()=>{
+        const data = await fetch( "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="+searchQuery);
+        const json = await data.json();
+        console.log(json);
+        setSuggestions(json[1]);
+    }
+
     const dispatch = useDispatch();
     function toggleMenuHandler(){
         dispatch(toggleSidebar());
@@ -32,10 +55,27 @@ function Header(){
        
             </div>
                 <div className='center-div'>
-                    <input type="text" className='searchbox my-2 p-2' placeholder='SearchText....' />
+                    <input type="text" className='searchbox my-2 p-2 px-5' placeholder='SearchText....'
+                    value={searchQuery} 
+                    onChange={(e)=> setSearchQuery(e.target.value)}
+                    onFocus={()=> setShowSuggestion(true)}
+                    onBlur={()=> setShowSuggestion(false)}
+                    />
                     <button className="btnborder  px-5 py-2 rounded-r-full bg-gray-100">
                 🔍
             </button>
+            {showSuggestion && (
+                <div className='sticky bg-white py-2 px-5 w-[26rem] shadow-lg rounded-lg border border-gray-100 '>
+                    <ul>
+                        {suggestions.map((s)=>(
+                            <li key={s} className='shadow-sm py-2 hover:bg-gray-100'>🔍  {s}</li>
+
+                        ))}
+                    
+                    </ul>
+                </div>
+
+            )}
           </div>
             <div className='userDiv'>
                 <img src={user} alt="user-icon" className='w-[3.2rem] ' />
