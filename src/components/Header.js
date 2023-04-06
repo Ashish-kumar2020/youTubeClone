@@ -1,9 +1,10 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import '../App.css';
 import user from "../assets/icons/user.svg"
 import {useEffect, useState} from "react";
 import { toggleSidebar } from '../utils/toggleSlice';
+import { cacheResults } from '../utils/searchSlice';
 
 function Header(){
     const [searchQuery,setSearchQuery] = useState("");
@@ -11,10 +12,17 @@ function Header(){
 
     const [showSuggestion, setShowSuggestion] = useState(false);
 
-    console.log(searchQuery);
+    const searchCache = useSelector((store)=> store.search);
+    const dispatch = useDispatch();
 
     useEffect(()=>{
-       const timer = setTimeout(()=> getSearchSuggestions(),200);
+       const timer = setTimeout(()=> {
+        if(searchCache[searchQuery]){
+            setSuggestions(searchCache[searchQuery]);
+        } else{
+            getSearchSuggestions();   
+        }
+       },200);
 
        return ()=>{
         clearTimeout(timer);
@@ -26,9 +34,13 @@ function Header(){
         const json = await data.json();
         console.log(json);
         setSuggestions(json[1]);
+
+        dispatch(cacheResults({
+            [searchQuery]: json[1],
+        }));
     }
 
-    const dispatch = useDispatch();
+    
     function toggleMenuHandler(){
         dispatch(toggleSidebar());
     }
