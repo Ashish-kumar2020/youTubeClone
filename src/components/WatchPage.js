@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeSidebar } from "../utils/toggleSlice";
 import { useSearchParams } from "react-router-dom";
+import LiveChat from "./LiveChat";
 
 const WatchPage = ()=>{
 
@@ -25,7 +26,10 @@ const WatchPage = ()=>{
                 allowFullScreen
             ></iframe>
             </div>
-            
+            <div className="w-full">
+               <LiveChat/>
+
+            </div>
       </div>
       </div>
     )
