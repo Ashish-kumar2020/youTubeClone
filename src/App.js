@@ -6,6 +6,8 @@ import Header from "./components/Header";
 import VideoCard from "./components/VideoCard";
 import WatchPage from "./components/WatchPage";
 import store from "./utils/store";
+import Demo from "./components/Demo";
+import Demo2 from "./components/Demo2";
 
 
 const appRouter = createBrowserRouter([
@@ -24,6 +26,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element:  <GenereComponent/>
+      },
+      {
+        path: "demo",
+        element:<><Demo/> <Demo2></Demo2></> 
       }
     ]
   }
